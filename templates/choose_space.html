@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask App</title>
+    <title>Choose Your Zodiac Sign</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Site to choose by space</h1>
-    
+    <h1>Your Zodiac Sign</h1>
+    <div id = "container">
+        <form>
+            <label for="zsign">Choose Your Zodiac Sign:</label>
+            <input type="text" id="zsign" name="zsign"><br><br>
+            <input type="submit" value="Submit">
+          </form>
+    </div>
 </body>
 </html>
+
+{% comment %} //  {% endcomment %}
