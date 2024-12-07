@@ -9,7 +9,7 @@
 <body>
     <h1>Site to choose by user</h1>
     <div id="container">
-        <form action="" method="post">
+        <form  method="post">
             <div class="side">
                 <p>Choose your destination</p>
                 <div class="custom-select">
@@ -27,17 +27,17 @@
             <div class="side">
                 <!-- Choose seat, in the end, there should be a seat map -->
                 <p>Choose your seat number</p>
-                <input class="input" type="number" min="1" max="30" required>
+                <input name="select-seat-number" class="input" type="number" min="1" max="30" required>
             </div>
             <div class="side">
                 <!-- Choose date -->
                 <p>Choose date of flight</p>
-                <input class="input" type="date" id="choose-date" min="2024-12-07" max="2026-12-07" required>
+                <input  name="select-date" class="input" type="date" id="choose-date" min="2024-12-07" max="2026-12-07" required>
             </div>
             <div class="end_side">
                 <!-- Choose time -->
                 <p>Choose time</p>
-                <input class="input" type="time" id="choose-time" required>
+                <input name="select-time" class="input" type="time" id="choose-time" required>
             </div>
 
             <div id="container">
@@ -45,7 +45,7 @@
                     <!-- Choose your email -->
                      <br>
                     <p>WriteYourEmail</p>
-                    <input class="input" type="email" required>
+                    <input name="select-email" class="input" type="email" required>
                 </div>
                 <input class="button" type="submit" value="Buy ticket">
             </div>
