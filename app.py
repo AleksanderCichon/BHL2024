@@ -19,6 +19,11 @@ def submit():
     data = request.form["input_name"]  # Gets data from a form
     return f"Received: {data}"
 
+@app.route("/payment")
+def payment():
+    return render_template("payment.html")
+
+form_data = {}
 @app.route("/choose-user")
 def choose_user():
     print("SUPEEEEE")
