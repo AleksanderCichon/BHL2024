@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Flask</h1>
+    <form action="/submit" method="POST">
+        <input type="text" name="input_name" placeholder="Enter something">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
