@@ -8,6 +8,46 @@
 </head>
 <body>
     <h1>Site to choose by user</h1>
-    
+    <p>Choose your destination</p>
+
+    <form action="" method="post">
+        <!-- In the end should get destinations from database -->
+        <select name="select-destination" id="select-destination" required>
+            <option value="Mars1">Mars1</option>
+            <option value="Mars2">Mars2</option>
+            <option value="Mars3">Mars3</option>
+            <option value="Mars4">Mars4</option>
+            <option value="Mars5">Mars5</option>
+            <option value="Moon1">Moon1</option>
+        </select>
+
+        <br> <br><!--new line -->
+        <!-- Choose seat, in the end, there should be a seat map -->
+        <label for="">Choose your seat number</label>
+        <br>
+        <input type="number" min="1" max="30" required>
+
+        <br> <br><!--new line -->
+        <!-- Choose date -->
+        <label for="choose-time">Choose date of flight</label>
+        <br>
+        <input type="date" id="choose-date" min="2024-12-07" max="2026-12-07" required>
+
+        <br><br> <!--new line -->
+        <!-- Choose time -->
+        <label for="choose-time" >Choose time</label>
+        <br>
+        <input type="time" id="choose-time" required>
+
+
+        <br>
+        <!-- Choose your email -->
+        <label for="email">Write your email</label>
+        <input type="email">
+
+        <input type="submit" value="Buy ticket">
+
+
+    </form>
 </body>
 </html>
