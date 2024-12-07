@@ -8,46 +8,49 @@
 </head>
 <body>
     <h1>Site to choose by user</h1>
-    <p>Choose your destination</p>
+    <div id="container">
+        <form action="" method="post">
+            <div class="side">
+                <p>Choose your destination</p>
+                <div class="custom-select">
+                    <!-- In the end should get destinations from database -->
+                    <select name="select-destination" id="select-destination" required>
+                        <option value="Mars1">Mars1</option>
+                        <option value="Mars2">Mars2</option>
+                        <option value="Mars3">Mars3</option>
+                        <option value="Mars4">Mars4</option>
+                        <option value="Mars5">Mars5</option>
+                        <option value="Moon1">Moon1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="side">
+                <!-- Choose seat, in the end, there should be a seat map -->
+                <p>Choose your seat number</p>
+                <input class="input" type="number" min="1" max="30" required>
+            </div>
+            <div class="side">
+                <!-- Choose date -->
+                <p>Choose date of flight</p>
+                <input class="input" type="date" id="choose-date" min="2024-12-07" max="2026-12-07" required>
+            </div>
+            <div class="end_side">
+                <!-- Choose time -->
+                <p>Choose time</p>
+                <input class="input" type="time" id="choose-time" required>
+            </div>
 
-    <form action="" method="post">
-        <!-- In the end should get destinations from database -->
-        <select name="select-destination" id="select-destination" required>
-            <option value="Mars1">Mars1</option>
-            <option value="Mars2">Mars2</option>
-            <option value="Mars3">Mars3</option>
-            <option value="Mars4">Mars4</option>
-            <option value="Mars5">Mars5</option>
-            <option value="Moon1">Moon1</option>
-        </select>
+            <div id="container">
+                <div class="email">
+                    <!-- Choose your email -->
+                     <br>
+                    <p>WriteYourEmail</p>
+                    <input class="input" type="email">
+                </div>
+                <input class="button" type="submit" value="Buy ticket">
+            </div>
 
-        <br> <br><!--new line -->
-        <!-- Choose seat, in the end, there should be a seat map -->
-        <label for="">Choose your seat number</label>
-        <br>
-        <input type="number" min="1" max="30" required>
-
-        <br> <br><!--new line -->
-        <!-- Choose date -->
-        <label for="choose-time">Choose date of flight</label>
-        <br>
-        <input type="date" id="choose-date" min="2024-12-07" max="2026-12-07" required>
-
-        <br><br> <!--new line -->
-        <!-- Choose time -->
-        <label for="choose-time" >Choose time</label>
-        <br>
-        <input type="time" id="choose-time" required>
-
-
-        <br>
-        <!-- Choose your email -->
-        <label for="email">Write your email</label>
-        <input type="email">
-
-        <input type="submit" value="Buy ticket">
-
-
-    </form>
+        </form>
+    </div>
 </body>
 </html>

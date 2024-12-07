@@ -21,12 +21,9 @@ input {
     max-width: fit-content;
 }
 #zodiac{
-    float:left;
     margin-bottom: 30px;
 }
-#form{
-    float:left;
-}
+
 .button {
     -webkit-box-shadow: 0px 0px 15px 0px #1C2629;
     -moz-box-shadow: 0px 0px 15px 0px #1C2629;
@@ -114,7 +111,7 @@ h1{
 	border: 3px solid rgba(67, 92, 99, 1);
 	top: 50%;
 	right: 16px;
-	transform: translate(0, 100%);
+	transform: translate(0, -100%);
 	width: 20px;
 	height: 14px;
 	background-color: #FFFFFF;
@@ -122,5 +119,54 @@ h1{
     transition-duration: 0s;
 }
 
+.side{
+    float:left;
+    margin: 0px 50px;
+    margin-bottom: 20px;
+}
+
+.end_side{
+    float:right;
+}
 
 
+.input {
+    padding: 10px;
+    font-size: 17px;
+    border-width: 0px;
+    background-color: rgba(67, 92, 99, 1);
+    -webkit-box-shadow: 0px 0px 15px 0px #1C2629;
+    -moz-box-shadow: 0px 0px 15px 0px #1C2629;
+    box-shadow: 0px 0px 15px 0px #1C2629;
+    border-color: rgba(67, 92, 99, 1);
+    color: #ffffff;
+    border-style: solid;
+    border-radius: 22px;
+    box-shadow: 0px 0px 11px rgba(26,36,39,.86);
+    text-shadow: 0px 0px 15px rgba(26,36,39,.87);
+    margin-bottom: 30px;
+}
+.input:focus {
+    -webkit-box-shadow: 0px 0px 42px 6px #1682A6;
+    -moz-box-shadow: 0px 0px 42px 6px #1682A6;
+    box-shadow: 0px 0px 42px 6px #1682A6;
+    background-color: #1682A6;
+    border-color: #1682A6;
+    outline:none;
+}
+
+.input::after{
+    content: "";
+	position: absolute;
+	pointer-events: none;
+    background-color: rgba(67, 92, 99, 1);
+	border: 3px solid rgba(67, 92, 99, 1);
+	top: 50%;
+	right: 16px;
+	transform: translate(0, -100%);
+	width: 20px;
+	height: 14px;
+	background-color: #FFFFFF;
+    clip-path: polygon(8% 17%, 0% 25%, 50% 84%, 100% 25%, 92% 17%, 50% 65%);
+    transition-duration: 0s;
+}
