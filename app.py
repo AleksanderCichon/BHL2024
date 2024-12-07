@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect, url_for
 
 app = Flask(__name__)
 
@@ -16,10 +16,21 @@ def submit():
     return f"Received: {data}"
 
 
-@app.route("/choose-user")
+@app.route("/choose-user", methods=["GET", "POST"])
 def choose_user():
+    print("SUPEEEEE")
+    if request.method == "POST":
+        destination  = request.form.get("select-destination")
+
+        print(destination)
+        # return redirect(url_for("/payment"))
+        # return destination
+    
     return render_template("choose_user.html")
 
+@app.route("/payment")
+def payment(payment_data):
+    print("wow")
 
 @app.route("/choose-space")
 def choose_space():
