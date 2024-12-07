@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request,redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for
+import sqlite3
+import queries
 
 app = Flask(__name__)
 
@@ -17,8 +19,7 @@ def submit():
     data = request.form["input_name"]  # Gets data from a form
     return f"Received: {data}"
 
-form_data = {}
-@app.route("/choose-user", methods=["GET", "POST"])
+@app.route("/choose-user")
 def choose_user():
     print("SUPEEEEE")
     if request.method == "POST":
@@ -34,25 +35,34 @@ def choose_user():
     
     return render_template("choose_user.html")
 
-@app.route("/payment")
-def payment():
-    return render_template("payment.html")
-
 @app.route("/choose-space", methods=["GET", "POST"])
 def choose_space():
     if request.method == "POST":
-        form_data["zodiac-sign"] = request.form.get("zodiac_signs")
-        return redirect(url_for("destiny"))
+        # Retrieve the selected zodiac sign from the form
+        zodiac_sign = request.form.get('select_zodiac_sign')
+        print(f"Selected Zodiac Sign: {zodiac_sign}")
 
-    print(request.method)
+        if zodiac_sign:  # Check if a value was submitted
+            # Connect to the database
+            conn = sqlite3.connect('database.db')
+            cursor = conn.cursor()
+
+            # Insert the zodiac sign into the ZodiacInfo table
+            cursor.execute('''
+                INSERT INTO ZodiacInfo (ZodiacSign)
+                VALUES (?);
+            ''', (zodiac_sign,))
+
+            conn.commit()
+            conn.close()
+        else:
+            print("No zodiac sign selected.")
     return render_template("choose_space.html")
 
-@app.route("/destiny",methods=["POST", "GET"])
-def destiny():
-    if form_data["zodiac-sign"]:
-        if request.method == "POST":
-            return redirect(url_for("payment"))
-        return render_template("destiny.html")
-    return "<h1>Zodiac sign was not choosen</h1>"
+@app.route("/schedule_zodiac_flight", methods=["GET", "POST"])
+def schedule_zodiac_flight():
+    # Function to handle flight scheduling
+    return render_template("schedule_zodiac_flight.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
