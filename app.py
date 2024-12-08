@@ -4,14 +4,10 @@ import queries
 
 app = Flask(__name__)
 
-
-
-
 # Route for the home page
 @app.route("/")
 def home():
     return render_template("index.html")  # Renders the HTML file
-
 
 # Route to handle form submissions or API calls
 @app.route("/submit", methods=["POST"])
@@ -44,7 +40,8 @@ def choose_user():
 def choose_space():
     if request.method == "POST":
         # Retrieve the selected zodiac sign from the form
-        zodiac_sign = request.form.get('select_zodiac_sign')
+        zodiac_sign = request.form.get('zodiac_signs')
+        session['zodiac_sign'] = zodiac_sign
         print(f"Selected Zodiac Sign: {zodiac_sign}")
 
         if zodiac_sign:  # Check if a value was submitted
@@ -52,9 +49,9 @@ def choose_space():
             conn = sqlite3.connect('database.db')
             cursor = conn.cursor()
 
-            # Insert the zodiac sign into the ZodiacInfo table
+            # Insert the zodiac sign into the FlightData table
             cursor.execute('''
-                INSERT INTO ZodiacInfo (ZodiacSign)
+                INSERT INTO FlightData (ZodiacSign)
                 VALUES (?);
             ''', (zodiac_sign,))
 
@@ -62,11 +59,22 @@ def choose_space():
             conn.close()
         else:
             print("No zodiac sign selected.")
+            
     return render_template("choose_space.html")
+
+def get_last_zodiac_sign_from_db():
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT ZodiacSign FROM FlightData ORDER BY ROWID DESC LIMIT 1")
+    zodiac_sign = cursor.fetchone()
+    conn.close()
+    return zodiac_sign[0] if zodiac_sign else "Not chosen"
 
 @app.route("/schedule_zodiac_flight", methods=["GET", "POST"])
 def schedule_zodiac_flight():
-    # Function to handle flight scheduling
+    zoidiac_sign = get_last_zodiac_sign_from_db()
+    print(zoidiac_sign)
+    
     return render_template("schedule_zodiac_flight.html")
 
 if __name__ == "__main__":
