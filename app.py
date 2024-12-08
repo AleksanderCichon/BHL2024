@@ -35,17 +35,35 @@ def choose_user():
         cursor = conn.cursor()
 
             # Insert the zodiac sign into the FlightData table
-        cursor.execute('''
-            INSERT INTO FlightData (ZodiacSign, Planet, Date, Seat)
-            VALUES (?,?,?,?);
-        ''', (form_data["zodiac-sign"], form_data["destination"], form_data["date"] + " " + form_data["time"], form_data["seat-number"]))
-
-        conn.commit()
-        conn.close()
+        try:
+            date_time_data = form_data["date"] + " "+form_data["time"]
+            cursor.execute('''
+                INSERT INTO FlightData (ZodiacSign, Planet, Date, Seat)
+                VALUES (?,?,?,?);
+            ''', (form_data["zodiac_sign"], form_data["destination"], date_time_data, form_data["seat-number"]))
+            print(conn)
+            conn.commit()
+            print("Insert succesful")
+            # conn.close()
+        except sqlite3.Error as e:
+            print(f"Database error: {e}")
+        
         return redirect(url_for("payment"))
         # return destination
     
-    return render_template("choose_user.html")
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Execute a query to fetch data
+    cursor.execute("SELECT * FROM ZodiacSignToDestination")
+
+    rows = cursor.fetchall()  # Retrieves all rows as a list of tuples
+    clean_rows = [i[1] for i in rows]
+    # Close the connection
+    conn.close()
+
+    print(rows)
+    return render_template("choose_user.html", planets = clean_rows)
 
 @app.route("/choose-space", methods=["GET", "POST"])
 def choose_space():
@@ -54,8 +72,11 @@ def choose_space():
         print("dupa2")
         # Retrieve the selected zodiac sign from the form
         zodiac_sign = request.form.get('zodiac_signs')
-        session['zodiac_sign'] = zodiac_sign
+        print("aaaaa")
+        # session['zodiac_sign'] = zodiac_sign
+        print("aaaaa")
         form_data["zodiac_sign"] = zodiac_sign
+        print("aaaaa")
         print(f"Selected Zodiac Sign: {zodiac_sign}")
 
         if zodiac_sign:  # Check if a value was submitted
@@ -71,10 +92,22 @@ def choose_space():
 
             conn.commit()
             conn.close()
+
+            return redirect(url_for("destiny"))
         else:
             print("No zodiac sign selected.")
             
-    return render_template("choose_space.html")
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+
+    # Execute a query to fetch data
+    cursor.execute("SELECT * FROM ZodiacSignToDestination")
+
+    rows = cursor.fetchall()  # Retrieves all rows as a list of tuples
+    clean_rows = [i[0] for i in rows]
+    # Close the connection
+    conn.close()
+    return render_template("choose_space.html", zodiacs = clean_rows)
 
 def get_last_zodiac_sign_from_db():
     conn = sqlite3.connect("database.db")

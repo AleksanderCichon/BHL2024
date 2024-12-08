@@ -15,7 +15,10 @@
                 <div class="custom-select">
                     <!-- In the end should get destinations from database -->
                     <select name="select-destination" id="select-destination" required>
-                        <option value="Mercury">Mercury</option>
+                        {%for planet in planets%}
+                        <option value="{{planet}}">{{planet}}</option> 
+                        {%endfor%}
+                        <!-- <option value="Mercury">Mercury</option>
                         <option value="Venus">Venus</option>
                         <option value="Moon">Moon</option>
                         <option value="Mars">Mars</option>
@@ -26,7 +29,7 @@
                         <option value="Ceres">Ceres</option>
                         <option value="Pluto">Pluto</option>
                         <option value="Makemake">Makemake</option>
-                        <option value="Eris">Eris</option>
+                        <option value="Eris">Eris</option> -->
                     </select>
                 </div>
             </div>
