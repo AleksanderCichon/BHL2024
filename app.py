@@ -24,7 +24,7 @@ form_data = {}
 def choose_user():
     print("SUPEEEEE")
     if request.method == "POST":
-        form_data["zodiac-sign"] = None
+        form_data["zodiac_sign"] = None
         form_data["destination"]  = request.form.get("select-destination")
         form_data["seat-number"] = request.form.get("select-seat-number")
         form_data["date"] = request.form.get("select-date")
@@ -53,6 +53,7 @@ def choose_space():
         # Retrieve the selected zodiac sign from the form
         zodiac_sign = request.form.get('zodiac_signs')
         session['zodiac_sign'] = zodiac_sign
+        form_data["zodiac_sign"] = zodiac_sign
         print(f"Selected Zodiac Sign: {zodiac_sign}")
 
         if zodiac_sign:  # Check if a value was submitted
@@ -87,6 +88,10 @@ def schedule_zodiac_flight():
     print(zoidiac_sign)
     
     return render_template("schedule_zodiac_flight.html")
+
+@app.route("/destiny",methods=["POST", "GET"])
+def destiny():
+    return render_template("destiny.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
