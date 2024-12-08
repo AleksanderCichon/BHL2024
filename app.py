@@ -24,7 +24,7 @@ def payment():
     return render_template("payment.html")
 
 form_data = {}
-@app.route("/choose-user")
+@app.route("/choose-user", methods=["GET", "POST"])
 def choose_user():
     print("SUPEEEEE")
     if request.method == "POST":
@@ -35,6 +35,17 @@ def choose_user():
         form_data["time"] = request.form.get("select-time")
         form_data["email"] = request.form.get("select-email")
         print(form_data)
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+
+            # Insert the zodiac sign into the ZodiacInfo table
+        cursor.execute('''
+            INSERT INTO ZodiacInfo (ZodiacSign, Planet, Date, Seat)
+            VALUES (?,?,?,?);
+        ''', (form_data["zodiac-sign"], form_data["destination"], form_data["date"] + " " + form_data["time"], form_data["seat-number"]))
+
+        conn.commit()
+        conn.close()
         return redirect(url_for("payment"))
         # return destination
     
