@@ -34,7 +34,7 @@ def choose_user():
         conn = sqlite3.connect('database.db')
         cursor = conn.cursor()
 
-            # Insert the zodiac sign into the ZodiacInfo table
+            # Insert the zodiac sign into the FlightData table
         cursor.execute('''
             INSERT INTO FlightData (ZodiacSign, Planet, Date, Seat)
             VALUES (?,?,?,?);
@@ -49,7 +49,9 @@ def choose_user():
 
 @app.route("/choose-space", methods=["GET", "POST"])
 def choose_space():
+    print("dupa1")
     if request.method == "POST":
+        print("dupa2")
         # Retrieve the selected zodiac sign from the form
         zodiac_sign = request.form.get('zodiac_signs')
         session['zodiac_sign'] = zodiac_sign
