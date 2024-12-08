@@ -75,13 +75,13 @@ def choose_space():
             
     return render_template("choose_space.html")
 
-# def get_last_zodiac_sign_from_db():
-#     conn = sqlite3.connect("database.db")
-#     cursor = conn.cursor()
-#     cursor.execute("SELECT ZodiacSign FROM FlightData ORDER BY ROWID DESC LIMIT 1")
-#     zodiac_sign = cursor.fetchone()
-#     conn.close()
-#     return zodiac_sign[0] if zodiac_sign else "Not chosen"
+def get_last_zodiac_sign_from_db():
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT ZodiacSign FROM FlightData ORDER BY ROWID DESC LIMIT 1")
+    zodiac_sign = cursor.fetchone()
+    conn.close()
+    return zodiac_sign[0] if zodiac_sign else "Not chosen"
 
 @app.route("/schedule_zodiac_flight", methods=["GET", "POST"])
 def schedule_zodiac_flight():
