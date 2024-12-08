@@ -36,7 +36,7 @@ def choose_user():
 
             # Insert the zodiac sign into the ZodiacInfo table
         cursor.execute('''
-            INSERT INTO ZodiacInfo (ZodiacSign, Planet, Date, Seat)
+            INSERT INTO FlightData (ZodiacSign, Planet, Date, Seat)
             VALUES (?,?,?,?);
         ''', (form_data["zodiac-sign"], form_data["destination"], form_data["date"] + " " + form_data["time"], form_data["seat-number"]))
 
