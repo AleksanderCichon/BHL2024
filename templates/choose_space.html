@@ -8,27 +8,28 @@
 </head>
 <body>
     <h1>Choose Your Zodiac Sign</h1>
-    <div id = "container">
-      <form method="post">
-        <div class="custom-select">
-          <select name="zodiac_signs" id="zodiac">
-            <option value="aries">Aries</option>
-            <option value="taurus">Taurus</option>
-            <option value="gemini">Gemini</option>
-            <option value="cancer">Cancer</option>
-            <option value="leo">Leo</option>
-            <option value="virgo">Virgo</option>
-            <option value="libra">Libra</option>
-            <option value="scorpio">Scorpio</option>
-            <option value="sagittarius">Sagittarius</option>
-            <option value="capricorn">Capricorn</option>
-            <option value="aquarius">Aquarius</option>
-            <option value="pisces">Pisces</option>
-          </select>
-        </div>
-        <div class="select-arrow"></div>
-        <div class="button"><a href="/schedule_zodiac_flight">Buy ticket</a></div>
-      </form>
+    <div id="container">
+        <form method="post" action="/schedule_zodiac_flight">
+            <div class="custom-select">
+                <select name="zodiac_signs" id="zodiac">
+                    <option value="aries">Aries</option>
+                    <option value="taurus">Taurus</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="cancer">Cancer</option>
+                    <option value="leo">Leo</option>
+                    <option value="virgo">Virgo</option>
+                    <option value="libra">Libra</option>
+                    <option value="scorpio">Scorpio</option>
+                    <option value="sagittarius">Sagittarius</option>
+                    <option value="capricorn">Capricorn</option>
+                    <option value="aquarius">Aquarius</option>
+                    <option value="pisces">Pisces</option>
+                </select>
+            </div>
+            <div class="button">
+                <button type="submit">Buy ticket</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
